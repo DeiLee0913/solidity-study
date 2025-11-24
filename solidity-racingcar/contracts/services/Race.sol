@@ -2,18 +2,23 @@
 pragma solidity ^0.8.0;
 
 import "../interfaces/IRace.sol";
+import "../interfaces/IMoveLibrary.sol";
 import "../libraries/CarStruct.sol";
-import "../libraries/RandomMoveLibrary.sol";
 import "../libraries/StringUtils.sol";
 
 contract Race is IRace {
     using CarStruct for CarStruct.Car;
-    using RandomMoveLibrary for uint256;
+
+    // 이동 로직 계약 주소 저장
+    IMoveLibrary private moveLogic;
+
+    // 생성자를 통해 이동 로직 계약 주소를 주입받음 (의존성 주입)
+    constructor(address _moveLogicAddress) {
+        moveLogic = IMoveLibrary(_moveLogicAddress);
+    }
 
     function moveCar(CarStruct.Car storage _car) internal override {
-        uint256 randomValue = RandomMoveLibrary.generatePseudoRandom();
-
-        if (randomValue.shouldMove()) {
+        if (moveLogic.shouldMove()) {
             _car.position++;
         }
     }

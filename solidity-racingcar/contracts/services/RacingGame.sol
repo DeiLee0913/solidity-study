@@ -4,11 +4,16 @@ pragma solidity ^0.8.0;
 import "../libraries/CarStruct.sol";
 import "../libraries/ValidationLibrary.sol";
 import "./Race.sol";
+import "../logic/RandomMoveLogic.sol";
 
 contract CarRacingGame is Race {
     using CarStruct for CarStruct.Car;
 
     CarStruct.Car[] private cars;
+
+    // 생성자를 통해 MoveLogic 주소를 받아서 Race 계약으로 전달
+    // 배포 시 RandomMoveLogic을 배포하고 그 주소를 여기에 주입
+    constructor(address _moveLogicAddress) Race(_moveLogicAddress) {}
 
     // 입력받아 게임을 시작하는 메인 함수
     function startRace(
