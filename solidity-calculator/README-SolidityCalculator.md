@@ -22,17 +22,30 @@
 ## 🛠️ 기술 스택 (Tech Stack)
 Language: Solidity ^0.8.0Framework: HardhatTesting: Hardhat Test (Mocha/Chai)
 
-## 📂 파일 구조Bashcontracts/
-├── Calculator.sol        # 메인 계산기 로직 (진입점)
-├── Adder.sol             # 덧셈 연산 전용 컨트랙트
-├── ResultStorage.sol     # 상태 저장소 컨트랙트
-├── interfaces/           # 인터페이스 모음 (DIP 구현)
+## 📂 파일 구조
+```bash
+contracts/
+│
+├── Calculator.sol 
+│
+├── interfaces/ 
 │   ├── IAdder.sol
 │   ├── ICalculator.sol
-│   └── IResultStorage.sol
-└── libraries/            # 유틸리티 라이브러리
-    └── StringSplitter.sol
-
+│   └── IResultStore.sol
+│
+├── libraries/       
+│   └── StringSplitter.sol
+│
+├── storage/
+│   └── ResultStorage.sol
+│
+└── services/
+    └── Adder.sol
+  
+test/
+│
+├── Calculator.js 
+```
 ## 💻 설치 및 실행 (Usage)
 1. 의존성 설치 hnpm install
 2. 컴파일 npx hardhat compile
