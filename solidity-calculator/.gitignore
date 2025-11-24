@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+
+# Hardhat build outcomes
+artifacts/
+cache/
+typechain-types/
+
+# env variables and keys
+.env
+.env.*
+
+# test coverage report
+coverage/
+coverage.json
+
+# Hardhat Ignition default folder for deployments against a local node
+ignition/deployments/chain-31337
